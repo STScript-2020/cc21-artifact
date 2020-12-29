@@ -1,0 +1,96 @@
+import React from 'react';
+
+import * as Roles from './Roles';
+import {
+  State,
+  ReceiveState,
+  SendState,
+  TerminalState,
+} from './EFSM';
+
+import {
+  MaybePromise,
+} from './Types';
+
+import {
+  ReceiveHandler
+} from './Session';
+
+{% for type in endpoint.types -%}
+import { {{ type.external ~ ((' as ' ~ type.alias) if type.external != type.alias else '') }} } from "{{ type.path }}";
+{% endfor %}
+
+// ==================
+// Message structures
+// ==================
+
+enum Labels {
+  {% for label in state.labels -%}
+  {{ label }} = '{{ label}}',
+  {%- endfor %}
+}
+
+{% for action in state.actions -%}
+interface {{ action.label }}Message {
+  label: Labels.{{ action.label }},
+  payload: [{{ action.payloads|join(', ') }}],
+};
+{% endfor %}
+
+type Message = {% for label in state.labels -%}{{ '| ' ~ label ~ 'Message' }}{%- endfor %}
+
+// ===============
+// Component types
+// ===============
+
+type Props = {
+  register: (role: Roles.Peers, handle: ReceiveHandler) => void
+};
+
+/**
+ * __Receives from {{ state.role }}.__ Possible messages:
+ *
+ {% for action in state.actions -%}
+ * * __{{ action.label }}__({{ action.payloads|join(', ') }})
+ {% endfor -%}
+ */
+export default abstract class S{{ state }}<ComponentState = {}> extends React.Component<Props, ComponentState>
+{
+
+  componentDidMount() {
+    this.props.register(Roles.Peers.{{ state.role }}, this.handle.bind(this));
+  }
+
+  handle(message: any): MaybePromise<State> {
+    const parsedMessage = JSON.parse(message) as Message;
+    switch (parsedMessage.label) {
+      {% for action in state.actions -%}
+      case Labels.{{ action.label }}: {
+        const thunk = () =>
+          {%- if endpoint.efsm.is_send_state(action.succ) -%}
+          SendState.S{{ action.succ }};
+          {%- elif endpoint.efsm.is_receive_state(action.succ) -%}
+          ReceiveState.S{{ action.succ }};
+          {%- else -%}
+          TerminalState.S{{ action.succ }};
+          {%- endif %}
+
+        const continuation = this.{{ action.label }}(...parsedMessage.payload);
+        if (continuation instanceof Promise) {
+          return new Promise((resolve, reject) => {
+            continuation.then(() => {
+              resolve(thunk());
+            }).catch(reject);
+          })
+        } else {
+          return thunk();
+        }
+      }
+      {%- endfor %}
+    }
+  }
+
+  {% for action in state.actions -%}
+  abstract {{ action.label }}({%- for payload in action.payloads -%}{{ 'payload' ~ loop.index ~ ': ' ~ payload ~ ', ' }}{%- endfor -%}): MaybePromise<void>;
+  {% endfor %}
+}

@@ -1,0 +1,18 @@
+// Roles.ts
+
+export enum Peers {
+  {% for role in endpoint.other_roles -%}
+  {{ role }} = "{{ role }}",
+  {%- endfor %}
+};
+
+export type All = Self | Peers;
+export type Self = "{{ endpoint.role }}";
+
+export type PeersToMapped<Value> = {
+  [Role in Peers]: Value
+};
+
+// Aliases
+export const Self: Self = "{{ endpoint.role }}";
+export const Server: Peers = Peers.{{ endpoint.server }};
