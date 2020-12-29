@@ -6,7 +6,7 @@
     "start-bare": "node build --variant bare",
     "start-mpst": "node build --variant mpst",
     "build": "tsc",
-    "build-all": "npm run build && ./clients/build.sh",
+    "build-all": "npm run build && cd clients && ./build.sh",
     "clear-bare": "find logs/bare -name *.log -exec rm {} \\;",
     "clear-mpst": "find logs/mpst -name *.log -exec rm {} \\;",
     "clear-all": "find logs -name *.log -exec rm {} \\;"

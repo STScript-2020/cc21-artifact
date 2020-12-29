@@ -71,11 +71,12 @@ RUN add-apt-repository -y ppa:deadsnakes/ppa \
 RUN python3.8 -m pip install -r /home/stscript/codegen/requirements.txt
 
 # Setup NodeJS
-RUN curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh \
+RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh \
   && bash ./nodesource_setup.sh \
   && apt-get -y install nodejs build-essential
 
-RUN npm i -g npm typescript typescript-formatter concurrently
+RUN npm i -g \
+  npm typescript typescript-formatter concurrently serve
 
 ##############################################################################
 # Web sandbox
@@ -131,6 +132,8 @@ RUN cd /home/stscript/perf-benchmarks \
 ##############################################################################
 # Workspace setup
 ##############################################################################
+
+RUN chown -R stscript:stscript /home/stscript
 
 RUN echo 'alias python=python3.8' \
     >> /home/stscript/.bashrc
