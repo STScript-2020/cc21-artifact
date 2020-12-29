@@ -19,6 +19,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: STScript-2020/cc21-artifact/stscript-cc21-artifact
+        repository: stscript-2020/cc21-artifact/stscript-cc21-artifact
         tags: latest
-        cache_froms: docker.pkg.github.com/STScript-2020/cc21-artifact/stscript-cc21-artifact
+        cache_froms: docker.pkg.github.com/stscript-2020/cc21-artifact/stscript-cc21-artifact
