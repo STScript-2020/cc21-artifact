@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+# Clean old logs
+./clean.sh
+
 if [ "$#" -eq  "0" ]
 then
     ARGS=(-m 100 1000 -r 20)
