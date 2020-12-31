@@ -33,7 +33,7 @@ RUN mkdir /home/stscript/bin
 COPY --chown=stscript:stscript \
   scripts /home/stscript/scripts/
 
-RUN chmod +x /home/stscript/scripts/*.sh
+RUN chmod +x /home/stscript/scripts/*
 
 ##############################################################################
 # Scribble-Java
@@ -107,7 +107,8 @@ RUN cd /home/stscript/case-studies \
       && npm i \
       && cd client \
       && npm i \
-      && cd ../..; \
+      && cd ../.. \
+      && pwd; \
   done
 
 ##############################################################################
@@ -142,7 +143,7 @@ RUN echo '[ ! -z "$TERM" -a -r /etc/welcome ] && cat /etc/welcome' \
     >> /etc/bash.bashrc \
     ; echo "\
 To run the code generator, you can do\n\
-  $ codegen.sh --help\n\
+  $ codegen --help\n\
 \n\
 To run a case study application, for example Battleships, you can do\n\
   $ cd ~/case-studies/Battleships\n\
