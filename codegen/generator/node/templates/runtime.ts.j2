@@ -74,7 +74,9 @@ export class {{ endpoint.role }}
               initialise: StateInitialiser<string>,
               generateID: () => string = uuidv1)
   {
-    const connectionContexts: ConnectionContext[] = [];
+    let connectionContexts: ConnectionContext[] = [
+      makeNewContext(),
+    ];
 
     // Handle explicit cancellation during the join phase.
     const onClose = ({ target: socket }: WebSocket.CloseEvent) => {
@@ -95,7 +97,8 @@ export class {{ endpoint.role }}
       const { data, target: socket } = event;
       const { connect: role } = Message.deserialise<Connect.Request>(data);
 
-      for (const [waiting, roleToSocket, socketToRole] of connectionContexts) {
+      for (let i = 0; i < connectionContexts.length; ++i) {
+        const [waiting, roleToSocket, socketToRole] = connectionContexts[i];
         if (waiting.has(role)) {
           // Update role-WebSocket mapping.
           roleToSocket[role] = socket;
@@ -103,7 +106,7 @@ export class {{ endpoint.role }}
           waiting.delete(role);
 
           if (waiting.size === 0) {
-            connectionContexts.shift();
+            connectionContexts = connectionContexts.filter((_, j) => j !== i);
             
             // Execute protocol when all participants have joined.
             new Session(
@@ -113,6 +116,10 @@ export class {{ endpoint.role }}
                 cancellation,
                 initialise
             );
+
+            if (connectionContexts.length === 0) {
+              connectionContexts.push(makeNewContext());
+            }
           }
           return;
         }
