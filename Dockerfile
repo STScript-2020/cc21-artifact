@@ -4,6 +4,7 @@ FROM ubuntu:focal
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
+    build-essential \
     curl \
     default-jdk \
     git \
@@ -78,7 +79,7 @@ RUN python3.8 -m pip install -r /home/stscript/codegen/requirements.txt
 # Setup NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh \
   && bash ./nodesource_setup.sh \
-  && apt-get -y install nodejs build-essential
+  && apt-get -y install nodejs
 
 RUN npm i -g \
   npm typescript typescript-formatter concurrently serve
