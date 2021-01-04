@@ -140,8 +140,6 @@ RUN cd /home/stscript/perf-benchmarks \
 # Workspace setup
 ##############################################################################
 
-RUN chown -R stscript:stscript /home/stscript
-
 RUN echo 'alias python=python3.8' \
     >> /home/stscript/.bashrc
 
