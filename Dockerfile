@@ -42,7 +42,12 @@ RUN chmod +x /home/stscript/scripts/*
 COPY --chown=stscript:stscript \
   scribble-java /home/stscript/scribble-java/
 
+COPY --chown=stscript:stscript \
+  scribble.patch /home/stscript/scribble-java/
+
 RUN cd /home/stscript/scribble-java \
+  && patch -p1 scribble.patch \
+  && rm scribble.patch \
   && ./mvnw -Dlicense.skip install \
   && cd scribble-dist/target \
   && unzip scribble-dist-0.4.4-SNAPSHOT.zip \
