@@ -35,6 +35,10 @@ This overview describes the steps to assess the practical claims of the paper us
 
 ## <a name="getting-started"></a> 1 Getting Started
 
+In this section, we outline how to access and run the artifact.
+We also introduce the layout of this repository,
+which is used to build the artifact Docker image.
+
 ---
 
 ### <a name="obtain-image"></a> 1.1 Obtain the Artifact (Docker image)
@@ -124,6 +128,9 @@ and assume role `S` to be the server;
 ---
 
 ## <a name="workflow"></a> 2 Experiment Workflow
+
+In this section, we explain the workflow for carrying
+out the experiments to verify the claims made in our paper.
 
 ---
 
@@ -366,6 +373,9 @@ and confirm the shutdown command by entering `y`.
 ---
 
 ## <a name="customise"></a> 3 Experiment Customisation
+
+In this section, we show how to customise the
+experiment workflow to implement your own use case.
 
 ---
 
