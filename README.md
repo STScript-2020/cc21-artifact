@@ -14,21 +14,21 @@ that supports multiparty communications with routing mechanisms.
 This overview describes the steps to assess the practical claims of the paper using the artifact.
 
 1. **[Getting Started](#getting-started)**
-  - [1.1](#obtain-image) Obtain the Artifact (Docker image)
-  - [1.2](#run-image) Run the Artifact
-  - [1.3](#artifact-layout) Artifact Layout
+    - [1.1](#obtain-image) Obtain the Artifact (Docker image)
+    - [1.2](#run-image) Run the Artifact
+    - [1.3](#artifact-layout) Artifact Layout
 
 2. **[Experiment Workflow](#workflow)**
-  - [2.1](#workflow-tests) End-to-End Tests
-  - [2.2](#workflow-case-studies) Case Studies
-    - [_Noughts and Crosses_](#noughts-and-crosses)
-    - [_Travel Agency_](#travel-agency)
-    - [_Battleships_](#battleships)
-  - [2.3](#workflow-perf-benchmarks) Performance Benchmarks
+    - [2.1](#workflow-tests) End-to-End Tests
+    - [2.2](#workflow-case-studies) Case Studies
+      - [_Noughts and Crosses_](#noughts-and-crosses)
+      - [_Travel Agency_](#travel-agency)
+      - [_Battleships_](#battleships)
+    - [2.3](#workflow-perf-benchmarks) Performance Benchmarks
 
 3. **[Experiment Customisation](#customise)**
-  - [3.1](#customise-case-studies) Case Studies
-  - [3.2](#customise-perf-benchmarks) Performance Benchmarks
+    - [3.1](#customise-case-studies) Case Studies
+    - [3.2](#customise-perf-benchmarks) Performance Benchmarks
 
 ---
 ---
