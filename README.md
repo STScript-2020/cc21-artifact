@@ -343,7 +343,7 @@ the tables printed at the end (bottom) of the notebook.
   * Time taken by `node` is _less_ than time taken by `react`, which entails that _"the round trip time is
 	dominated by the browser-side message processing time_".
 
-  * The delta (of **`mpst`**} relative to **`bare`**) for the `React` endpoints is _greater_ than the delta for the `Node` endpoints, which entails that _"**`mpst`** introduces overhead dominated by the React.js session runtime"_.
+  * The delta (of **`mpst`** relative to **`bare`**) for the `React` endpoints is _greater_ than the delta for the `Node` endpoints, which entails that _"**`mpst`** introduces overhead dominated by the React.js session runtime"_.
 
 * Complex Ping Pong ("w/ req"):
 
