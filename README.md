@@ -21,9 +21,9 @@ This overview describes the steps to assess the practical claims of the paper us
 2. **[Experiment Workflow](#workflow)**
     - [2.1](#workflow-tests) End-to-End Tests
     - [2.2](#workflow-case-studies) Case Studies
-      - [_Noughts and Crosses_](#noughts-and-crosses)
-      - [_Travel Agency_](#travel-agency)
-      - [_Battleships_](#battleships)
+      - [2.2.1](#noughts-and-crosses) Noughts and Crosses
+      - [2.2.2](#travel-agency) Travel Agency
+      - [2.2.3](#battleships) Battleships
     - [2.3](#workflow-perf-benchmarks) Performance Benchmarks
 
 3. **[Experiment Customisation](#customise)**
@@ -177,7 +177,7 @@ implemented using the generated APIs to show the expressiveness
 of the generated APIs and the compatibility with modern web
 programming practices.
 
-#### <a name="noughts-and-crosses"></a> __✅ _Noughts and Crosses___
+#### <a name="noughts-and-crosses"></a> __2.2.1 Noughts and Crosses__
 
 This is the classic turn-based 2-player game as introduced in
 §5.
@@ -216,7 +216,7 @@ _Additional Notes:_
 * Refresh both web browsers to start a new game.
 * Stop the web application by pressing `Ctrl+C` on the terminal.
 
-#### <a name="travel-agency"></a> __✅ _Travel Agency___
+#### <a name="travel-agency"></a> __2.2.2 Travel Agency__
 
 This is the running example of our paper, as introduced in
 §1.
@@ -256,7 +256,7 @@ Expect to see that there is no availability, as the last seat has been taken.
 
 Stop the web application by pressing `Ctrl+C` on the terminal.
 
-#### <a name="battleships"></a> __✅ _Battleships___
+#### <a name="battleships"></a> __2.2.3 Battleships__
 
 This is a turn-based 2-player board game
 with more complex application logic compared with
