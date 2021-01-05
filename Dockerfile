@@ -136,6 +136,8 @@ RUN cd /home/stscript/perf-benchmarks \
     && npm i \
     && npm run build-all
 
+RUN chown -R stscript:stscript /home/stscript/perf-benchmarks
+
 ##############################################################################
 # Workspace setup
 ##############################################################################
@@ -161,7 +163,7 @@ To run the performance benchmarks, you can do\n\
 \n\
 To visualise the benchmarks, you can do\n\
   $ cd ~/perf-benchmarks\n\
-  $ jupyter notebook\n\
+  $ jupyter notebook --ip=0.0.0.0\n\
 then click on the \"localhost\" link on the terminal output,\n\
 open the \"STScript Benchmark Visualisation\" notebook, and run all cells\n\
 "\
